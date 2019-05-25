@@ -1,0 +1,19 @@
+@import "./layout.css";
+@import "./math.css";
+
+a {
+  color: #00B7FF;
+}
+
+table {
+  width: 100%;
+}
+
+.tri-nums {
+  border-collapse: collapse;
+}
+
+.tri-nums td {
+  border-bottom: 1px solid black;
+  text-align: center;
+}
