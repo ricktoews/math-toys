@@ -1,5 +1,6 @@
 @import "./layout.css";
 @import "./math.css";
+@import "./mastermind.css";
 
 a {
   color: #00B7FF;

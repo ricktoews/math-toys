@@ -24,6 +24,7 @@ app.use('/math', mathRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+console.log('not found, req', req);
   next(createError(404));
 });
 

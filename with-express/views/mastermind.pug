@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  include ../views/header.pug
+
+  main
+    script(type="module") import play from "/javascripts/mastermind.js";
+      | play(1);
+
+    p Draw Mastermind grid.
+    div(class="mastermind-board")
+      each i in [1, 2, 3, 4, 5, 6, 7, 8]
+        div(class="row")
+          div(class="cell")
+          div(class="cell")
+          div(class="cell")
+          div(class="cell")
+    
+
+    div(id="round")
+      // draw area for displaying current guess.
+      div(id="current-guess")
+        - for (i = 0; i < 4; i++)
+          div
+
+      div(class="feedback")
+        div Colors in right position
+        div
+          - for (i = 0; i <= 4; i++)
+            span(class="right")= i
+
+        div Colors in wrong position
+        div
+          - for (i = 0; i <= 4; i++)
+            span(class="wrong")= i
+     
+
+  include ../views/footer.pug
+

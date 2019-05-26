@@ -1,0 +1,115 @@
+.mastermind-board, #round {
+  --peg-cell: 25px;
+  --peg: 15px;
+  --peg-margin: 5px;
+}
+
+
+/* code guess and feedback */
+#round {
+  position:absolute;
+  width: 300px;
+  height: 125px;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px;
+  top: 100px;
+  left: 500px;
+}
+.prompt {
+  display: block;
+}
+#current-guess {
+  width: calc(var(--peg-cell) * 4);
+  height: var(--peg-cell);
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+#current-guess > div {
+  width: var(--peg-cell);
+  height: var(--peg-cell);
+  float: left;
+}
+
+.feedback > div {
+  width: 140px;
+  height: 25px;
+  line-height: 25px;
+  float: left;
+}
+
+.feedback span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: gray;
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
+  line-height: 16px;
+  color: white;
+}
+
+.right:hover, .right.selected {
+  background-color:green;
+}
+
+.wrong:hover, .wrong.selected {
+  background-color:red;
+}
+
+
+/* playing board */
+.mastermind-board {
+  width: calc(var(--peg-cell) * 4 + 40px);
+  height: 240px;
+  border: 1px solid black;
+}
+
+.mastermind-board .row {
+  width: 100%;
+  height: --peg-cell;
+  clear: both;
+}
+
+.mastermind-board > .row > div {
+  float: left;
+  height: var(--peg-cell);
+  width: var(--peg-cell);
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+
+/* individual peg styles */
+.peg {
+  width: var(--peg);
+  height: var(--peg);
+  border-radius: var(--peg);
+  margin: var(--peg-margin);
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.black {
+  background-color: black;
+}
+
+.yellow {
+  background-color: yellow;
+}
