@@ -67,7 +67,6 @@ function is_match(exact, inexact, perm, pattern) {
 }
 
 function filter_perms(exact, inexact, pattern) {
-console.log('filter_perms pattern', pattern);
     var filtered = [];
     perms.forEach((p) => {
         if (is_match(exact, inexact, p, pattern)) {
@@ -82,10 +81,19 @@ function update_perms(reduced_set) {
   perms = reduced_set;
 }
 
+function random_perm() {
+  let ndx = Math.floor(Math.random() * perms.length);
+  return perms[ndx];
+}
+
+function refresh_perms() {
+  perms = build(6, 4);
+}
+
 /*
 To test:
 */
 
 //var results = filter_perms(2, 2, 'ABCD');
 //console.log('results from 2, 2, ABCD', results, results.length);
-export { update_perms, filter_perms };
+export { refresh_perms, random_perm, update_perms, filter_perms };

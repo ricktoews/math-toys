@@ -1,6 +1,6 @@
 'use strict'
 
-import { update_perms, filter_perms } from './filter_perms.js';
+import { refresh_perms, random_perm, update_perms, filter_perms } from './filter_perms.js';
 
 var codeColors = [
   'blue',
@@ -11,10 +11,25 @@ var codeColors = [
   'orange'
 ];
 
-// Change this to select first guess.
-var currentCode = ['blue', 'green', 'black', 'red'];
+var boardCells = document.getElementsByClassName('cell');
+var currentCode, currentFeedback, currentRow;
 
-var currentFeedback = [-1, -1, codeToString(currentCode)];
+function refresh_game() {
+  refresh_perms();
+  refreshGuess();
+// clear board.
+  for (let i = 0; i < boardCells.length; i++) {
+    while (boardCells[i].firstChild) {
+	  boardCells[i].removeChild(boardCells[i].firstChild);
+	}
+  }
+// initialize with first guess.
+  currentCode = stringToCode(random_perm());
+  currentFeedback = [-1, -1, codeToString(currentCode)];
+  currentRow = 1;
+  displayGuess();
+}
+
 
 /* utility / conversion */
 function codeToString(code) {
@@ -64,9 +79,19 @@ function displayGuess() {
   }
 }
 
+function fillInBoard(row) {
+  var cellNdx = (row - 1) * 4;
+  for (let i = 0; i < 4; i++) {
+    var color = currentCode[i];
+    var peg = addPeg(color);
+    boardCells[cellNdx + i].appendChild(peg);
+  }
+}
+
 
 // have new set of permutations. pick one, and refresh display.
 function chooseNewGuess(permutations) {
+  // actually, this shouldn't know about the permutations list.
   let ndx = Math.floor(Math.random() * permutations.length);
   let new_guess = permutations[ndx];
   console.log('choosing code', new_guess);
@@ -121,10 +146,14 @@ function processFeedback(grade) {
   }
 
   // feedback complete: apply to permutations to get new set. 
-  if (currentFeedback[0] > -1 && currentFeedback[1] > -1) {
+  if (currentFeedback[0] === 4 && currentFeedback[1] === 0) {
+    // Code correct.
+	refresh_game();
+  } else if (currentFeedback[0] > -1 && currentFeedback[1] > -1) {
     console.log('ready to process', currentFeedback);
 	let new_permutations = filter_perms(...currentFeedback);
 	update_perms(new_permutations);
+    fillInBoard(currentRow++);
 	chooseNewGuess(new_permutations);
   }
 }
@@ -144,14 +173,6 @@ function attachEvents() {
 /* entry point */
 export default function(row) {
   attachEvents();
-  var els = document.getElementsByClassName('cell');
-  console.log('function play');
-  var cellNdx = (row - 1) * 4;
-  for (let i = 0; i < 4; i++) {
-    var color = currentCode[i];
-    var peg = addPeg(color);
-    els[cellNdx + i].appendChild(peg);
-  }
-  displayGuess();
+  refresh_game();
   promptFeedback();
 }
