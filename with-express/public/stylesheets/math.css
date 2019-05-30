@@ -26,6 +26,23 @@ fieldset {
   margin-left: 5px;
 }
 
+/* denominator display */
+.center {
+  text-align: center;
+}
+
+.period span:nth-child(1) {
+  color: #666;
+}
+
+.period span:nth-child(2) {
+  color: #f90;
+}
+
+.period span:nth-child(3) {
+  color: #09f;
+}
+
 /* phi powers input */
 .phi-input label {
   margin-right: 5px;

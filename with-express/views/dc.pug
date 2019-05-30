@@ -23,9 +23,9 @@ block content
         each obj in rows
           tr
             td= obj.fraction
-            td= '.' + obj.decimal
-            td= obj.length
-            td= obj.repeating
+            include ../views/dc-period.pug
+            td(class="center")= obj.length
+            td(class="center")= obj.repeating
 
   include ../views/footer.pug
 

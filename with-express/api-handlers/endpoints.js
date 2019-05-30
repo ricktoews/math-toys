@@ -1,10 +1,4 @@
-var MathToys = require('../helpers/math');
-
-function tri(req, res, next) {
-  let toys = new MathToys;
-  let triList = toys.getTriList(10);
-  res.render('tri', { title: 'Triangular Numbers', tris: triList });
-}
+var MathToys = require('../models/math-rest');
 
 function dc(req, res, next) {
   let toys = new MathToys;
@@ -41,8 +35,7 @@ function phi(req, res, next) {
 
 const endpoints = {
   dc: dc,
-  phi: phi,
-  tri: tri
+  phi: phi
 }
 
 module.exports = endpoints;

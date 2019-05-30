@@ -8,8 +8,6 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/tri', endpoints.tri);
-
 router.get('/dc', endpoints.dc);
 router.get('/dc/:denom', endpoints.dc);
 
