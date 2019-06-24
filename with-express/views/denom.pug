@@ -1,0 +1,35 @@
+extends layout
+
+block content
+
+  include ../views/header.pug
+
+  main
+
+    fieldset(class="denom-input")
+      label(for="denom") Denominator
+      input(type="text" id="denom")
+      button(type="text" class="calculate") Calculate
+
+    if rows.length > 0
+      div(class="dc-information") 
+
+      div(class="dc-illustration")
+        table(class="num-table")
+          thead
+            tr
+              th= "Period"
+              th= "Numerator"
+              th= "Position"
+          tbody
+          each period in rows
+            tr
+              td(data-original=period)= period
+              include ../views/denom-period.pug
+
+  include ../views/footer.pug
+
+  script(type="module") import { addHandler, addPeriodHandler } from "/javascripts/denom.js";
+    | addHandler('.denom-input button')
+    | addPeriodHandler('.period span')
+

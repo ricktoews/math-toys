@@ -10,10 +10,12 @@ table {
   width: 100%;
 }
 
-.tri-nums {
+.num-table {
   border-collapse: collapse;
 }
 
-.tri-nums td {
-  border-bottom: 1px solid black;
+.num-table td {
+  border-bottom: 1px solid #ccc;
+  line-height: 1.75em;
 }
+

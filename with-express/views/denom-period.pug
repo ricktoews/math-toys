@@ -1,0 +1,7 @@
+block content
+  td(class="period")
+    each num in periodData[period]
+      span(data-position=num.position)= num.numerator
+  td(class="period")
+    span= periodData[period].position
+

@@ -34,6 +34,10 @@ function parseDecimal(d) {
   return d;
 }
 
+function massageDenom(data) {
+  return data;
+}
+
 function massageDc(data) {
   for (let i = 0; i < data.length; i++) {
     let parsed = parseDecimal(data[i]);
@@ -46,5 +50,6 @@ function massageDc(data) {
 }
 
 module.exports = {
+  massageDenom: massageDenom,
   massageDc: massageDc
 };

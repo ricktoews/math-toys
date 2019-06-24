@@ -8,6 +8,9 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/denom', endpoints.denom);
+router.get('/denom/:denom', endpoints.denom);
+
 router.get('/dc', endpoints.dc);
 router.get('/dc/:denom', endpoints.dc);
 

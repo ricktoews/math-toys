@@ -12,20 +12,26 @@ block content
       button(type="text" class="calculate") Calculate
 
     if rows.length > 0
-      table(class="tri-nums")
-        thead
-          tr
-            th= "Fraction"
-            th= "Decimal Expansion"
-            th= "Length"
-            th= "Repeating"
-        tbody
-        each obj in rows
-          tr
-            td= obj.fraction
-            include ../views/dc-period.pug
-            td(class="center")= obj.length
-            td(class="center")= obj.repeating
+      div(class="dc-information") 
+        p Except for 2 and 5, a fraction with a prime denominator has an infinitely repeating period, or decimal expansion.
+        p If the length of the period is even, it can be split into two parts of equal length, the sum of which will be a number composed entirely of 9s.
+        p If the period length is odd, the period of another fraction can be added to it, with the same result. The numerator of this fraction will be the difference between the numerator of the current fraction and the denominator. 
+
+      div(class="dc-illustration")
+        table(class="num-table")
+          thead
+            tr
+              th= "Fraction"
+              th= "Decimal Expansion"
+              th= "Length"
+              th= "Repeating"
+          tbody
+          each obj in rows
+            tr
+              td= obj.fraction
+              include ../views/dc-period.pug
+              td(class="center")= obj.length
+              td(class="center")= obj.repeating
 
   include ../views/footer.pug
 

@@ -26,6 +26,22 @@ fieldset {
   margin-left: 5px;
 }
 
+/* denominator columns */
+.dc-information, .dc-illustration {
+  width: 50%;
+  float: left;
+}
+.dc-information {
+}
+
+/* denominator period stuff */
+.period span::after {
+  content: ', ';
+}
+.period span {
+  cursor: pointer;
+}
+
 /* denominator display */
 .center {
   text-align: center;

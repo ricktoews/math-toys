@@ -1,14 +1,30 @@
 var MathToys = require('../models/math-rest');
 
-function dc(req, res, next) {
+function denom(req, res, next) {
   let toys = new MathToys;
   // Get the denominator, or handle when there isn't one.
   let denom = req.params.denom || null;
   if (denom === null) {
+    res.render('denom', { title: 'Denominator Analyzer', rows: [] });
+  } else {
+    toys.denom(denom).then(data => {
+      let periods = Object.keys(data).sort();
+      console.log('denom data', periods);
+      res.render('denom', { title: 'Dnominator Analyzer', rows: periods, periodData: data });
+    });
+  }
+}
+
+function dc(req, res, next) {
+  let toys = new MathToys;
+  // Get the denominator, or handle when there isn't one.
+  let denom = req.params.denom || null;
+  let rows = [];
+  if (denom === null) {
     res.render('dc', { title: 'Decimal Calculator', rows: [] });
   } else {
     toys.dc(denom).then(data => {
-      let rows = data;
+      rows.push(data[0]);
       res.render('dc', { title: 'Decimal Calculator', rows: rows });
     });
   }
@@ -34,6 +50,7 @@ function phi(req, res, next) {
 }
 
 const endpoints = {
+  denom: denom,
   dc: dc,
   phi: phi
 }
